@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+/***********************************************************************************************************************
+* DISCLAIMER
+* This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products.
+* No other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
+* applicable laws, including copyright laws.
+* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIESREGARDING THIS SOFTWARE, WHETHER EXPRESS, IMPLIED
+* OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+* NON-INFRINGEMENT.  ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED.TO THE MAXIMUM EXTENT PERMITTED NOT PROHIBITED BY
+* LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES SHALL BE LIABLE FOR ANY DIRECT,
+* INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS SOFTWARE, EVEN IF RENESAS OR
+* ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+* Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability
+* of this software. By using this software, you agree to the additional terms and conditions found by accessing the
+* following link:
+* http://www.renesas.com/disclaimer
+*
+* Copyright (C) 2020 Renesas Electronics Corporation. All rights reserved.
+***********************************************************************************************************************/
+/***********************************************************************************************************************
+  Purpose: Module Description File (MDF) Example (Schema Version 2.0)
+           This is a description of a sample FIT module configuration file
+***********************************************************************************************************************/
+-->
+<module xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="2.0" xs:noNamespaceSchemaLocation="schema_mdf_2.00.xsd">
+  <fileVersion>1.00</fileVersion>
+  <formatVersion>2.00</formatVersion>
+  <fileTemplate></fileTemplate>
+  <configuration>
+    <property id="RM_COMMS_I2C_CFG_PARAM_CHECKING_ENABLE" display="Parameter Checking" default="BSP_CFG_PARAM_CHECKING_ENABLE" type="combobox">
+      <option id="RM_COMMS_I2C_CFG_PARAM_CHECKING_ENABLE.BSP_CFG_PARAM_CHECKING_ENABLE" display="System Default" value="BSP_CFG_PARAM_CHECKING_ENABLE" />
+      <option id="RM_COMMS_I2C_CFG_PARAM_CHECKING_ENABLE.0" display="Disabled" value="0" />
+      <option id="RM_COMMS_I2C_CFG_PARAM_CHECKING_ENABLE.1" display="Enabled" value="1" />
+      <description>Select whether to include parameter checking in the code.
+"Disabled": Compiles out parameter checking.
+"Enabled": Includes parameter checking.
+"System Default": Sets this to "BSP_CFG_PARAM_CHECKING_ENABLE"</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS_NUM_MAX" display="Number of I2C Shared Buses" default="1" type="combobox">
+      <option id="COMMS_I2C_CFG_BUS_NUM_MAX.0" display="Unused" value="0" />
+      <option id="COMMS_I2C_CFG_BUS_NUM_MAX.1" display="1" value="1" />
+      <option id="COMMS_I2C_CFG_BUS_NUM_MAX.2" display="2" value="2" />
+      <option id="COMMS_I2C_CFG_BUS_NUM_MAX.3" display="3" value="3" />
+      <option id="COMMS_I2C_CFG_BUS_NUM_MAX.4" display="4" value="4" />
+      <option id="COMMS_I2C_CFG_BUS_NUM_MAX.5" display="5" value="5" />
+      <description>Set the number of I2C Shard Buses.
+[Note]: Up to five I3C Shared Buses can be controlled.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE_NUM_MAX" display="Number of I2C communication Devices" default="1" type="combobox">
+      <option id="COMMS_I2C_CFG_DEVICE_NUM_MAX.0" display="Unused" value="0" />
+      <option id="COMMS_I2C_CFG_DEVICE_NUM_MAX.1" display="1" value="1" />
+      <option id="COMMS_I2C_CFG_DEVICE_NUM_MAX.2" display="2" value="2" />
+      <option id="COMMS_I2C_CFG_DEVICE_NUM_MAX.3" display="3" value="3" />
+      <option id="COMMS_I2C_CFG_DEVICE_NUM_MAX.4" display="4" value="4" />
+      <option id="COMMS_I2C_CFG_DEVICE_NUM_MAX.5" display="5" value="5" />
+      <description>Set the number of I2C devices.
+[Note]: Up to five I2C devices can be controlled.</description>
+    </property>
+
+    <!-- COMMS I2C Shared Bus -->
+    <property id="COMMS_I2C_CFG_BUS0_DRIVER_TYPE" display="I2C Driver Type for I2C Shared Bus0" default="COMMS_DRIVER_NONE" type="combobox">
+      <option id="COMMS_I2C_CFG_BUS0_DRIVER_TYPE.COMMS_DRIVER_I2C" display="IICA" value="COMMS_DRIVER_I2C" />
+      <option id="COMMS_I2C_CFG_BUS0_DRIVER_TYPE.COMMS_DRIVER_SAU_I2C" display="SAU IIC" value="COMMS_DRIVER_SAU_I2C" />
+      <option id="COMMS_I2C_CFG_BUS0_DRIVER_TYPE.COMMS_DRIVER_NONE" display="Not selected" value="COMMS_DRIVER_NONE" />
+      <constraint display="When number of I2C buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <description>Set the driver type (see below) to be used for each I2C Shared Bus0.
+- When using IICA, set this to "IICA".
+- When using SAU IIC, set this to "SAU IIC".</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS0_COMPONENT" display="Component name for the I2C Shared Bus0" default="Config_IIC00" type="textbox">
+      <constraint display="When number of I2C buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_BUS0_COMPONENT}"</constraint>
+      <description>Specify the component name of I2C bus for I2C Shared Bus0.
+For example, when using IIC communication (master mode) component of IICA0, specify the component name [Config_IICA0].</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS1_DRIVER_TYPE" display="Driver Type for I2C Shared Bus1" default="COMMS_DRIVER_NONE" type="combobox">
+      <option id="COMMS_I2C_CFG_BUS1_DRIVER_TYPE.COMMS_DRIVER_I2C" display="IICA" value="COMMS_DRIVER_I2C" />
+      <option id="COMMS_I2C_CFG_BUS1_DRIVER_TYPE.COMMS_DRIVER_SAU_I2C" display="SAU IIC" value="COMMS_DRIVER_SAU_I2C" />
+      <option id="COMMS_I2C_CFG_BUS1_DRIVER_TYPE.COMMS_DRIVER_NONE" display="Not selected" value="COMMS_DRIVER_NONE" />
+      <constraint display="When number of I2C buses is 2 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.2}"</constraint>
+      <description>Set the driver type (see below) to be used for each I2C Shared Bus1.
+- When using IICA, set this to "IICA".
+- When using SAU IIC, set this to "SAU IIC".</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS1_COMPONENT" display="Component name for the I2C Shared Bus1" default="Config_IIC00" type="textbox">
+      <constraint display="When number of I2C buses is 2 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.2}"</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_BUS1_COMPONENT}"</constraint>
+      <description>Specify the component name of I2C bus for I2C Shared Bus1.
+For example, when using IIC communication (master mode) component of IICA0, specify the component name [Config_IICA0].</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS2_DRIVER_TYPE" display="Driver Type for I2C Shared Bus2" default="COMMS_DRIVER_NONE" type="combobox">
+      <option id="COMMS_I2C_CFG_BUS2_DRIVER_TYPE.COMMS_DRIVER_I2C" display="IICA" value="COMMS_DRIVER_I2C" />
+      <option id="COMMS_I2C_CFG_BUS2_DRIVER_TYPE.COMMS_DRIVER_SAU_I2C" display="SAU IIC" value="COMMS_DRIVER_SAU_I2C" />
+      <option id="COMMS_I2C_CFG_BUS2_DRIVER_TYPE.COMMS_DRIVER_NONE" display="Not selected" value="COMMS_DRIVER_NONE" />
+      <constraint display="When number of I2C buses is 3 or more2" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.3}"</constraint>
+      <description>Set the driver type (see below) to be used for each I2C Shared Bus2.
+- When using IICA, set this to "IICA".
+- When using SAU IIC, set this to "SAU IIC".</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS2_COMPONENT" display="Component name for the I2C Shared Bus2" default="Config_IIC00" type="textbox">
+      <constraint display="When number of I2C buses is 3 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.3}"</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_BUS2_COMPONENT}"</constraint>
+      <description>Specify the component name of I2C bus for I2C Shared Bus2.
+For example, when using IIC communication (master mode) component of IICA0, specify the component name [Config_IICA0].</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS3_DRIVER_TYPE" display="Driver Type for I2C Shared Bus3" default="COMMS_DRIVER_NONE" type="combobox">
+      <option id="COMMS_I2C_CFG_BUS3_DRIVER_TYPE.COMMS_DRIVER_I2C" display="IICA" value="COMMS_DRIVER_I2C" />
+      <option id="COMMS_I2C_CFG_BUS3_DRIVER_TYPE.COMMS_DRIVER_SAU_I2C" display="SAU IIC" value="COMMS_DRIVER_SAU_I2C" />
+      <option id="COMMS_I2C_CFG_BUS3_DRIVER_TYPE.COMMS_DRIVER_NONE" display="Not selected" value="COMMS_DRIVER_NONE" />
+      <constraint display="When number of I2C buses is 4 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.4}"</constraint>
+      <description>Set the driver type (see below) to be used for each I2C Shared Bus3.
+- When using IICA, set this to "IICA".
+- When using SAU IIC, set this to "SAU IIC".</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS3_COMPONENT" display="Component name for the I2C Shared Bus3" default="Config_IIC00" type="textbox">
+      <constraint display="When number of I2C buses is 4 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.4}"</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_BUS3_COMPONENT}"</constraint>
+      <description>Specify the component name of I2C bus for I2C Shared Bus3.
+For example, when using IIC communication (master mode) component of IICA0, specify the component name [Config_IICA0].</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS4_DRIVER_TYPE" display="Driver Type for I2C Shared Bus4" default="COMMS_DRIVER_NONE" type="combobox">
+      <option id="COMMS_I2C_CFG_BUS4_DRIVER_TYPE.COMMS_DRIVER_I2C" display="IICA" value="COMMS_DRIVER_I2C" />
+      <option id="COMMS_I2C_CFG_BUS4_DRIVER_TYPE.COMMS_DRIVER_SAU_I2C" display="SAU IIC" value="COMMS_DRIVER_SAU_I2C" />
+      <option id="COMMS_I2C_CFG_BUS4_DRIVER_TYPE.COMMS_DRIVER_NONE" display="Not selected" value="COMMS_DRIVER_NONE" />
+      <constraint display="When number of I2C buses is 5" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.5}"</constraint>
+      <description>Set the driver type (see below) to be used for each I2C Shared Bus4.
+- When using IICA, set this to "IICA".
+- When using SAU IIC, set this to "SAU IIC".</description>
+    </property>
+    <property id="COMMS_I2C_CFG_BUS4_COMPONENT" display="Component name for the I2C bus4" default="Config_IIC00" type="textbox">
+      <constraint display="When using I2C bus4" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.5}"</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_BUS4_COMPONENT}"</constraint>
+      <description>Specify the component name of I2C bus for I2C Shared Bus4.
+For example, when using IIC communication (master mode) component of IICA0, specify the component name [Config_IICA0].</description>
+    </property>
+
+    <!-- COMMS I2C Device -->
+    <property id="COMMS_I2C_CFG_DEVICE0_BUS_CH" display="I2C Shared Bus No. for I2C Communication Device0" default="g_comms_i2c_bus0_extended_cfg" type="combobox">
+      <option id="COMMS_I2C_CFG_DEVICE0_BUS_CH.1" display="I2C bus0" value="g_comms_i2c_bus0_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE0_BUS_CH.2" display="I2C bus1" value="g_comms_i2c_bus1_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE0_BUS_CH.3" display="I2C bus2" value="g_comms_i2c_bus2_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE0_BUS_CH.4" display="I2C bus3" value="g_comms_i2c_bus3_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE0_BUS_CH.5" display="I2C bus4" value="g_comms_i2c_bus4_extended_cfg" />
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.1}"</constraint>
+      <description>Set the using I2C Shared Bus No. for I2C Communication Device0.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE0_SLAVE_ADDR" display="Slave address for I2C Communication Device0" default="0x00" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.1}"</constraint>
+      <description>Specify the Slave address of the I2C Communication Device0.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE0_CALLBACK" display="Callback function for I2C Communication Device0" default="comms_i2c_user_callback0" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.1}"</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_DEVICE0_CALLBACK}"</constraint>
+      <description>Specify the Callback function name of the I2C Communication Device0.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE1_BUS_CH" display="I2C Shared Bus No. for I2C Communication Device1" default="g_comms_i2c_bus0_extended_cfg" type="combobox">
+      <option id="COMMS_I2C_CFG_DEVICE1_BUS_CH.1" display="I2C bus0" value="g_comms_i2c_bus0_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE1_BUS_CH.2" display="I2C bus1" value="g_comms_i2c_bus1_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE1_BUS_CH.3" display="I2C bus2" value="g_comms_i2c_bus2_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE1_BUS_CH.4" display="I2C bus3" value="g_comms_i2c_bus3_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE1_BUS_CH.5" display="I2C bus4" value="g_comms_i2c_bus4_extended_cfg" />
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 2 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.2}"</constraint>
+      <description>Set the using I2C Shared Bus No. for I2C Communication Device1.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE1_SLAVE_ADDR" display="Slave address for I2C Communication Device1" default="0x00" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 2 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.2}"</constraint>
+      <description>Specify the Slave address of the I2C Communication Device1.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE1_CALLBACK" display="Callback function for I2C Communication Device1" default="comms_i2c_user_callback1" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 2 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.2}"</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_DEVICE1_CALLBACK}"</constraint>
+      <description>Specify the Callback function name of the I2C Communication Device1.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE2_BUS_CH" display="I2C Shared Bus No. for I2C Communication Device2" default="g_comms_i2c_bus0_extended_cfg" type="combobox">
+      <option id="COMMS_I2C_CFG_DEVICE2_BUS_CH.1" display="I2C bus0" value="g_comms_i2c_bus0_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE2_BUS_CH.2" display="I2C bus1" value="g_comms_i2c_bus1_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE2_BUS_CH.3" display="I2C bus2" value="g_comms_i2c_bus2_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE2_BUS_CH.4" display="I2C bus3" value="g_comms_i2c_bus3_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE2_BUS_CH.5" display="I2C bus4" value="g_comms_i2c_bus4_extended_cfg" />
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 3 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.3}"</constraint>
+      <description>Set the using I2C Shared Bus No. for I2C Communication Device2.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE2_SLAVE_ADDR" display="Slave address for I2C Communication Device2" default="0x00" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 3 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.3}"</constraint>
+      <description>Specify the Slave address of the I2C Communication Device2.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE2_CALLBACK" display="Callback function for I2C device2" default="comms_i2c_user_callback2" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 3 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.3}"</constraint>
+      <constraint display="when callback function is enabled only" actionOnFail="disable">${COMMS_I2C_CFG_DEVICE2_CALLBACK_ENABLE} == ${COMMS_I2C_CFG_DEVICE2_CALLBACK_ENABLE.1}</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_DEVICE2_CALLBACK}"</constraint>
+      <description>Specify the Callback function name of the I2C Communication Device2.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE3_BUS_CH" display="I2C Shared Bus No. for I2C Communication Device3" default="g_comms_i2c_bus0_extended_cfg" type="combobox">
+      <option id="COMMS_I2C_CFG_DEVICE3_BUS_CH.1" display="I2C bus0" value="g_comms_i2c_bus0_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE3_BUS_CH.2" display="I2C bus1" value="g_comms_i2c_bus1_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE3_BUS_CH.3" display="I2C bus2" value="g_comms_i2c_bus2_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE3_BUS_CH.4" display="I2C bus3" value="g_comms_i2c_bus3_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE3_BUS_CH.5" display="I2C bus4" value="g_comms_i2c_bus4_extended_cfg" />
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 4 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.4}"</constraint>
+      <description>Set the using I2C Shared Bus No. for I2C Communication Device3.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE3_SLAVE_ADDR" display="Slave address for I2C Communication Device3" default="0x00" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 4 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.4}"</constraint>
+      <description>Specify the Slave address of the I2C Communication Device3.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE3_CALLBACK" display="Callback function for I2C device3" default="comms_i2c_user_callback3" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 4 or more" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.4}"</constraint>
+      <constraint display="when callback function is enabled only" actionOnFail="disable">${COMMS_I2C_CFG_DEVICE3_CALLBACK_ENABLE} == ${COMMS_I2C_CFG_DEVICE3_CALLBACK_ENABLE.1}</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_DEVICE3_CALLBACK}"</constraint>
+      <description>Specify the Callback function name of the I2C Communication Device3.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE4_BUS_CH" display="I2C Shared Bus No. for I2C Communication Device4" default="g_comms_i2c_bus0_extended_cfg" type="combobox">
+      <option id="COMMS_I2C_CFG_DEVICE4_BUS_CH.1" display="I2C bus0" value="g_comms_i2c_bus0_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE4_BUS_CH.2" display="I2C bus1" value="g_comms_i2c_bus1_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE4_BUS_CH.3" display="I2C bus2" value="g_comms_i2c_bus2_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE4_BUS_CH.4" display="I2C bus3" value="g_comms_i2c_bus3_extended_cfg" />
+      <option id="COMMS_I2C_CFG_DEVICE4_BUS_CH.5" display="I2C bus4" value="g_comms_i2c_bus4_extended_cfg" />
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 5" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.5}"</constraint>
+      <description>Set the using I2C Shared Bus No. for I2C Communication Device4.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE4_SLAVE_ADDR" display="Slave address for I2C Communication Device4" default="0x00" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 5" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.5}"</constraint>
+      <description>Specify the Slave address of the I2C Communication Device4.</description>
+    </property>
+    <property id="COMMS_I2C_CFG_DEVICE4_CALLBACK" display="Callback function for I2C device4" default="comms_i2c_user_callback4" type="textbox">
+      <constraint display="When number of I2C Shared buses is 1 or more" actionOnFail="disable">"${COMMS_I2C_CFG_BUS_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_BUS_NUM_MAX.1}"</constraint>
+      <constraint display="When number of I2C devices is 5" actionOnFail="disable">"${COMMS_I2C_CFG_DEVICE_NUM_MAX}" &gt;= "${COMMS_I2C_CFG_DEVICE_NUM_MAX.5}"</constraint>
+      <constraint display="when callback function is enabled only" actionOnFail="disable">${COMMS_I2C_CFG_DEVICE4_CALLBACK_ENABLE} == ${COMMS_I2C_CFG_DEVICE4_CALLBACK_ENABLE.1}</constraint>
+      <constraint display="Must not be empty">"" != "${COMMS_I2C_CFG_DEVICE4_CALLBACK}"</constraint>
+      <description>Specify the Callback function name of the I2C Communication Device4.</description>
+    </property>
+  </configuration>
+</module>
