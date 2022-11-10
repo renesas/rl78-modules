@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="r_comms_i2c" version="1.00">
+  <urls>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_comms_i2c_v1.00.xml</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_comms_i2c_v1.00.zip</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_comms_i2c_v1.00_extend.mdf</url>
+  </urls>
+</item>
+<item name="r_comms_i2c" version="1.10">
+  <urls>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_comms_i2c_v1.10.xml</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_comms_i2c_v1.10.zip</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_comms_i2c_v1.10_extend.mdf</url>
+  </urls>
+</item>
+<item name="r_hs300x" version="1.00">
+  <urls>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_hs300x_v1.00.xml</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_hs300x_v1.00.zip</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_hs300x_v1.00_extend.mdf</url>
+  </urls>
+</item>
+<item name="r_hs300x" version="1.10">
+  <urls>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_hs300x_v1.10.xml</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_hs300x_v1.10.zip</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_hs300x_v1.10_extend.mdf</url>
+  </urls>
+</item>
+<item name="r_hs300x" version="1.20">
+  <urls>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_hs300x_v1.20.xml</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_hs300x_v1.20.zip</url>
+    <url>https://raw.githubusercontent.com/renesas/rl78-modules/758205cdd523472f95a70bfb375dc80a1e2a9370/RL78_Modules/GenericModules/r_hs300x_v1.20_extend.mdf</url>
+  </urls>
+</item>
+
+
+
