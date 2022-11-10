@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refinfo>
+  <!-- multiple versions permitted -->
+    <toolchain>
+      <brand>Renesas</brand>
+      <product>CCRL</product>
+    </toolchain>
+    <toolchain>
+      <brand>IAR</brand>
+      <product>ICCRL78</product>
+    </toolchain>
+    <toolchain>
+      <brand>LLVM</brand>
+      <product>LLVMRL78</product>
+    </toolchain>
+  <!-- only one target entry allowed; multiple sub tags permitted -->
+  <target>
+    <family>RL78</family>
+    <series>RL78G2x</series>
+    <group>RL78G23</group>
+  </target>
+  <!-- only one package entry allowed -->
+  <!-- multiple dependencies, functions, and incdirs permitted -->
+  <package>
+    <type>RL78</type>
+    <name>r_comms_i2c</name>
+    <version>1.00</version>
+    <zipsource>r_comms_i2c_v1.00.zip</zipsource>
+    <dependency>
+      <module>r_bsp</module>
+      <version>1.13</version>
+    </dependency>
+    <application>Middleware</application>
+    <application>IIC communication driver interface middleware</application>
+    <desc>IIC Communication Driver Interface Middleware</desc>
+    <details>The Multi-device IIC communication driver interface middleware controls the Renesas Electronics Multi-device MCU (RA, RX, Rl78).</details>
+    <function>IIC</function>
+    <incdir>r_config</incdir>
+    <incdir>r_comms_i2c</incdir>
+    <incdir>r_comms_i2c/inc/api</incdir>
+    <incdir>r_comms_i2c/inc/instances</incdir>
+  </package>
+</refinfo>
