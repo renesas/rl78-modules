@@ -1,6 +1,4 @@
-# rl78-modules
-
-# rx-driver-package
+# RL78 software modules
 - This is RL78 software module GitHub repository.
 - This is Renesas MCU "RL78 Family" official software module. This repository is referred from Renesas tools (Smart Configurator) to download appropriate version for user project.
 - Please refer to the URL below for more information.
